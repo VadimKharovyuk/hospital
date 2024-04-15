@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись на прием</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем внешний файл стилей, если необходимо -->
+</head>
+<style>
+    nav {
+        text-align: center;
+        background-color: #333; /* Цвет фона */
+        padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+    }
+
+    nav ul {
+        list-style-type: none; /* Убираем маркеры списка */
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+
+        display: inline; /* Располагаем элементы горизонтально */
+    }
+
+    nav ul li a {
+        color: #fff; /* Цвет текста */
+        text-decoration: none; /* Убираем подчеркивание ссылок */
+        padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+        display: inline-block; /* Отображаем как блочные элементы */
+    }
+
+    nav ul li a:hover {
+        background-color: #555; /* Изменение цвета при наведении курсора */
+    }
+    body {
+        font-family: Arial, sans-serif; /* Шрифт для всего документа */
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4; /* Цвет фона */
+    }
+
+    h1 {
+        text-align: center; /* Центрирование заголовка */
+        margin-top: 30px; /* Отступ сверху */
+    }
+
+    form {
+        max-width: 600px; /* Максимальная ширина формы */
+        margin: 0 auto; /* Центрирование формы */
+        padding: 20px;
+        background-color: #fff; /* Фон формы */
+        border-radius: 10px; /* Скругление углов формы */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень формы */
+    }
+
+    label {
+        display: block; /* Блочный элемент */
+        margin-bottom: 10px; /* Отступ снизу */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select,
+    input[type="datetime-local"] {
+        width: 100%; /* Ширина поля ввода */
+        padding: 10px; /* Внутренние отступы */
+        margin-bottom: 20px; /* Отступ снизу */
+        border: 1px solid #ccc; /* Граница поля */
+        border-radius: 5px; /* Скругление углов поля */
+        box-sizing: border-box; /* Учитываем границы внутри ширины */
+    }
+
+    input[type="submit"] {
+        width: 100%; /* Ширина кнопки */
+        padding: 10px; /* Внутренние отступы */
+        background-color: #4caf50; /* Цвет фона кнопки */
+        color: #fff; /* Цвет текста */
+        border: none; /* Убираем границу */
+        border-radius: 5px; /* Скругление углов */
+        cursor: pointer; /* Курсор при наведении */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049; /* Цвет фона при наведении */
+    }
+
+</style>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#">О нас</a></li>
+        <li><a href="#">Наши услуги</a></li>
+        <li><a href="#">Наши врачи</a></li>
+        <li><a href="/login">Записаться</a></li>
+    </ul>
+</nav>
+
+<h1>Запись на прием</h1>
+
+<form action="/submit_appointment" method="POST">
+    <label for="doctor">Выберите врача:</label>
+    <select name="doctor" id="doctor">
+        <option value="">Выберите врача</option>
+        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
+    </select>
+
+    <label for="name">Ваше имя:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Ваш Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phone">Ваш номер телефона:</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="date">Выберите дату и время:</label>
+    <input type="datetime-local" id="date" name="date" required>
+
+    <input type="submit" value="Записаться">
+</form>
+
+
+</body>
+</html>
