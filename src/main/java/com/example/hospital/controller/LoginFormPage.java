@@ -20,14 +20,16 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 public class LoginFormPage {
-    private final DoctorRepository doctorRepository ;
+    private final DoctorRepository doctorRepository;
     private final ClientRepository clientRepository;
+
     @GetMapping("/login")
     public String showAppointmentForm(Model model) {
         List<Doctor> doctors = doctorRepository.findAll(); // Предположим, что doctorRepository - это ваш репозиторий для работы с сущностью Doctor
         model.addAttribute("doctors", doctors);
         return "login"; // Возвращаем имя представления (шаблона HTML)
     }
+
     @PostMapping("/submit_appointment")
     @ResponseBody
     public String submitAppointment(
