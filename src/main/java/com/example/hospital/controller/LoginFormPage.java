@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,13 +29,13 @@ public class LoginFormPage {
     }
 
     @PostMapping("/submit_appointment")
-    @ResponseBody
     public String submitAppointment(
             @RequestParam Long doctorId,
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam String date) {
+            @RequestParam String date,
+            RedirectAttributes redirectAttributes) {
 
         // Получаем выбранного врача из базы данных
         Doctor doctor = doctorRepository.findById(doctorId)
@@ -61,8 +62,14 @@ public class LoginFormPage {
         // Сохраняем клиента в базе данных
         clientRepository.save(client);
 
-        return "Запись на прием успешно создана!";
+        // Добавляем сообщение об успешном создании записи
+        redirectAttributes.addFlashAttribute("message", "Запись на прием успешно создана!");
+
+        // Выполняем редирект на страницу с записями на прием
+        return "redirect:/login";
     }
+
+
 
     @GetMapping("/appointments")
     public String getAppointments(Model model) {
