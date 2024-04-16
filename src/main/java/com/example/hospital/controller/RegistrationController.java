@@ -33,7 +33,6 @@ public class RegistrationController {
         emailService.sendSimpleMessage(email, subject, message);
 
         // Предположим, что здесь будет код для сохранения клиента в базу данных
-        // Предположим, что здесь будет код для сохранения клиента в базу данных
         clientRepository.save(client);
 
 
