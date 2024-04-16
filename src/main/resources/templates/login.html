@@ -102,11 +102,7 @@
 <h1>Запись на прием</h1>
 
 <form action="/submit_appointment" method="POST">
-    <label for="doctor">Выберите врача:</label>
-    <select name="doctor" id="doctor">
-        <option value="">Выберите врача</option>
-        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
-    </select>
+    <input type="hidden" id="doctorId" name="doctorId" value="1"> <!-- Замените значение "1" на значение, соответствующее выбранному врачу -->
 
     <label for="name">Ваше имя:</label>
     <input type="text" id="name" name="name" required>
@@ -122,6 +118,7 @@
 
     <input type="submit" value="Записаться">
 </form>
+
 
 
 </body>
