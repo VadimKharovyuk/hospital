@@ -27,6 +27,12 @@ public class LoginFormPage {
         model.addAttribute("doctors", doctors);
         return "login"; // Возвращаем имя представления (шаблона HTML)
     }
+    @GetMapping("/register")
+    public String registerPage(Model model){
+        List<Doctor> doctors = doctorRepository.findAll(); // Предположим, что doctorRepository - это ваш репозиторий для работы с сущностью Doctor
+        model.addAttribute("doctors", doctors);
+        return "registerMail";
+    }
 
     @PostMapping("/submit_appointment")
     public String submitAppointment(
