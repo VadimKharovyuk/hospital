@@ -40,7 +40,8 @@ public class LoginFormPage {
             @RequestParam String date) {
 
         // Получаем выбранного врача из базы данных
-        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() -> new IllegalArgumentException("Invalid doctor Id: " + doctorId));
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid doctor Id: " + doctorId));
 
         // Создаем нового клиента
         Client client = new Client();
@@ -57,14 +58,14 @@ public class LoginFormPage {
             return "Ошибка при обработке даты и времени";
         }
 
+        // Привязываем клиента к выбранному врачу
+        client.setDoctor(doctor);
+
         // Сохраняем клиента в базе данных
         clientRepository.save(client);
 
-        // Привязываем клиента к выбранному врачу
-        doctor.getClients().add(client);
-        doctorRepository.save(doctor);
-
         return "Запись на прием успешно создана!";
     }
+
 
 }

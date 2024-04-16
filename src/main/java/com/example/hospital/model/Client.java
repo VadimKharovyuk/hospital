@@ -1,9 +1,6 @@
 package com.example.hospital.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -23,6 +20,10 @@ public class Client {
     private Date appointmentDate;
     private String email;
     private String phone;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id") // Название столбца в базе данных, который содержит идентификатор доктора
+    private Doctor doctor;
 
 
 }
