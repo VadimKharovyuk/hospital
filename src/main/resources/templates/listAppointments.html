@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Записи на прием</title>
+    <style>
+
+        nav {
+            text-align: center;
+            background-color: #333; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+
+            display: inline; /* Располагаем элементы горизонтально */
+        }
+
+        nav ul li a {
+            color: #fff; /* Цвет текста */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+            display: inline-block; /* Отображаем как блочные элементы */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Изменение цвета при наведении курсора */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/appointments">Список</a></li>
+        <li><a href="#">Наши услуги</a></li>
+        <li><a href="/doctors">Наши врачи</a></li>
+        <li><a href="/login">Записаться</a></li>
+    </ul>
+</nav>
+<h1>Записи на прием</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Имя клиента</th>
+        <th>Email</th>
+        <th>Телефон</th>
+        <th>Дата и время приема</th>
+        <th>Врач</th>
+        <th>Действия</th> <!-- Новая колонка для кнопки удаления -->
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используйте Thymeleaf для итерации по списку записей на прием и вывода данных в таблицу -->
+    <tr th:each="appointment : ${appointments}">
+        <td th:text="${appointment.name}"></td>
+        <td th:text="${appointment.email}"></td>
+        <td th:text="${appointment.phone}"></td>
+        <td th:text="${appointment.appointmentDate}"></td>
+        <td th:text="${appointment.doctor.name}"></td>
+        <td>
+            <form th:action="@{/delete/{id}(id=${appointment.id})}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Удалить">
+            </form>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -7,10 +7,7 @@ import com.example.hospital.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -67,5 +64,20 @@ public class LoginFormPage {
         return "Запись на прием успешно создана!";
     }
 
+    @GetMapping("/appointments")
+    public String getAppointments(Model model) {
+        // Получение списка записей на прием из базы данных
+        List<Client> appointments = clientRepository.findAll();
+        // Передача списка записей на прием в представление
+        model.addAttribute("appointments", appointments);
+        return "listAppointments"; // Возвращает имя представления
+    }
+
+
+    @RequestMapping("/delete/{id}")
+    public String deleteBiId(@PathVariable Long id){
+        clientRepository.deleteById(id);
+    return "redirect:/appointments";
+    }
 
 }
