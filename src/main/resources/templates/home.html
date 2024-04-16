@@ -6,6 +6,8 @@
     <title>Домашняя страница</title>
     <link rel="stylesheet" href="styles.css">
     <style>
+
+
         .video-header {
             position: relative;
             width: 100%;
@@ -86,40 +88,94 @@
             height: 100%;
         }
 
-
-        /* Общие стили для секций */
         section {
-            margin-bottom: 20px;
-        }
-
-        /* Стили для секции "Наши услуги" */
-        #services {
-            background-color: #f9f9f9;
-            padding: 20px;
+            margin-bottom: 30px; /* Отступ снизу между секциями */
         }
 
         .service {
-            margin-bottom: 20px;
+            width: calc(25% - 30px); /* Ширина блока с учетом отступов между блоками */
+            border-radius: 30px;
+            text-align: center; /* Размещение содержимого по центру */
+            padding: 30px; /* Внутренние отступы */
+            margin-right: 30px; /* Отступ справа между блоками */
+            margin-bottom: 30px; /* Отступ снизу между блоками */
+            transition: box-shadow 0.3s; /* Плавное изменение тени при наведении на секцию */
+            display: inline-block; /* Для расположения блоков в ряд */
+            vertical-align: top; /* Выравнивание по верхнему краю */
         }
+
+        /* Последний элемент в ряду не имеет отступа справа */
+        .service:nth-child(4n) {
+            margin-right: 0;
+        }
+
+        .service:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Тень при наведении на секцию */
+        }
+
+
+
 
         .service img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            border-radius: 5px;
+            width: 300px; /* Ширина изображения */
+            height: auto; /* Автоматическая высота изображения */
+            display: block; /* Размещение изображения в блочном формате */
+            margin: 0 auto; /* Расположение изображения по центру */
         }
 
-        .doctor img {
-            width: 100%;
-            max-width: 200px;
-            height: auto;
-            border-radius: 50%; /* Для круглого изображения */
+        .service h3 {
+            margin-top: 20px; /* Отступ сверху для заголовка */
+            font-size: 1.2em; /* Размер шрифта заголовка */
         }
+
+        .service p {
+            margin-bottom: 20px; /* Отступ снизу для абзацев */
+        }
+
+
+
+
+
+
+
+        .about {
+            text-align: center; /* Выравнивание контента по центру */
+            padding: 30px; /* Внутренние отступы вокруг содержимого */
+            border-radius: 20px;
+        }
+
+        .about img {
+            display: block; /* Размещаем изображение в блочном формате */
+            margin: 0 auto 30px; /* Автоматический отступ сверху и снизу, а по горизонтали - auto, чтобы изображение было по центру */
+            max-width: 500px; /* Максимальная ширина изображения равна ширине секции */
+            height: auto; /* Автоматическая высота изображения */
+            border-radius: 30px;
+        }
+
+        .about p {
+            margin-bottom: 20px; /* Отступ снизу для абзацев */
+        }
+
+        .about:hover {
+            box-shadow: 0 0 20px rgba(80, 77, 77, 0.7); /* Тень при наведении на секцию */
+        }
+
+        footer {
+            background-color: #333; /* Цвет фона подвала */
+            color: #fff; /* Цвет текста в подвале */
+            text-align: center; /* Выравнивание текста по центру */
+            padding: 20px 0; /* Внутренние отступы сверху и снизу */
+        }
+
+        .footer-text {
+            margin: 0; /* Удаление внешних отступов для абзаца */
+        }
+
 
 
     </style>
 </head>
-<body>
+<body class="body">
 
 <nav>
     <ul>
@@ -140,13 +196,16 @@
         </video>
     </div>
     <div class="header-content">
-        <h1>Добро пожаловать в нашу клинику</h1>
+        <h1>Добро пожаловать <br><br>Vadim Kharovyuk Сlinic</h1>
     </div>
 </header>
 
 
-<section id="about">
-    <h2>О нашей клинике</h2>
+<section id="about"  class="about">
+    <h1>О нашей клинике</h1>
+    <img src="/pic/clinic_1.jpg" alt="clinic_1">
+
+
     <p>Добро пожаловать в нашу клинику! Мы предлагаем качественные медицинские услуги с учетом индивидуальных
         потребностей каждого пациента. Наша клиника оснащена современным оборудованием и наш персонал состоит из опытных
         и квалифицированных врачей, готовых обеспечить вас высококачественным медицинским обслуживанием.</p>
@@ -159,9 +218,10 @@
 </section>
 
 
-<section id="services">
-    <h2>Наши услуги</h2>
-    <p>Здесь вы можете ознакомиться с предоставляемыми нашей клиникой медицинскими услугами и процедурами.</p>
+
+<section id="services" >
+    <h2 style="text-align: center">Наши услуги</h2>
+    <p style="text-align: center">Здесь вы можете ознакомиться с предоставляемыми нашей клиникой медицинскими услугами и процедурами.</p>
 
     <div class="service">
         <img src="/pic/service1.jpg" alt="УЗИ">
@@ -194,12 +254,31 @@
             массажисты предлагают различные виды массажа, адаптированные к индивидуальным потребностям каждого
             клиента.</p>
     </div>
+    <div class="service">
+        <img src="/pic/diagnostika.png" alt="Диагностика">
+        <h3>Диагностика</h3>
+        <p>Предоставляем широкий спектр диагностических процедур для точного выявления причин заболеваний и
+            составления эффективного плана лечения.
+        </p>
+    </div>
+    <div class="service">
+        <img src="/pic/heal.jpg" alt="Лечение">
+        <h3>Лечение</h3>
+        <p>Наша клиника осуществляет высококачественное лечение различных заболеваний с использованием современных
+            методов и технологий.
+        </p>
+    </div>
 </section>
 
 
 <footer>
-    <p>Контактная информация вашей клиники</p>
+    <p>Vadim Kharovyuk Сlinic</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6384.614475842986!2d30.870394100574885!3d36.85906411682703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14c3831b5311c537%3A0xa07c87b414ad7b48!2sBlue%20moon%20holiday%20villas!5e0!3m2!1sru!2str!4v1713292233357!5m2!1sru!2str"
+            width="200" height="125" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <p>2021-2024</p>
 </footer>
+
+
 
 </body>
 </html>
