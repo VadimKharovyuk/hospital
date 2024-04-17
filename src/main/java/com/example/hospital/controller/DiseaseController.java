@@ -7,10 +7,7 @@ import com.example.hospital.repository.PatientRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -62,6 +59,22 @@ public class DiseaseController {
         // Перенаправляем пользователя на страницу со списком пациентов
         return "home";
     }
+
+
+    @GetMapping("/diseaseslist")
+    public String getAllDiseases(Model model) {
+        model.addAttribute("diseases", diseaseRepository.findAll());
+        return "diseaseList";
+    }
+
+    @RequestMapping("/deletedisease/{id}")
+    public String deleteBiId(@PathVariable Long id){
+       diseaseRepository.deleteById(id);
+        return "redirect:/diseaseslist";
+    }
+
+
+
 
 
 

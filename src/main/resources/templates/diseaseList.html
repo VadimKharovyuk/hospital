@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease List</title>
+    <style>
+        table {
+            margin: 0 auto; /* Центрирование таблицы */
+            width: 50%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center">Болезней Лист</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Описание болезни:</th>
+        <th>Начало болезни</th>
+        <th>Конец болезни</th>
+        <th>Пацыент</th> <!-- Добавленная колонка для пациента -->
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используйте Thymeleaf для отображения списка болезней -->
+    <tr th:each="disease : ${diseases}">
+        <td th:text="${disease.name}">Name</td>
+        <td th:text="${disease.startDate}">Start Date</td>
+        <td th:text="${disease.endDate}">End Date</td>
+        <td th:text="${disease.patient.name}">Patient</td> <!-- Отобразить имя пациента -->
+        <td>
+            <form th:action="@{/deletedisease/{id}(id=${disease.id})}" method="post">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Удалить">
+            </form>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
