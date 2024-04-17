@@ -57,8 +57,20 @@ public class RegistrationController {
         clientRepository.save(client);
 
         // Отправка письма подтверждения на электронную почту
-        String subject = "Запись на прием в Kharovyuk Vadim clinic к " +doctor.getName();
-        String message = client.getName()+" Вы  успешно записались на прием! к "+ doctor.getName()+"\n Специальность "+ doctor.getSpecialization()  + "\n Расписание "+doctor.getSchedule();
+        String subject = "Запись на прием в Kharovyuk Vadim clinic к " + doctor.getName();
+
+        // Получаем выбранную дату и время записи клиента
+        Date appointmentDate = client.getAppointmentDate();
+
+        // Форматируем дату в нужный формат для сообщения
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+        String formattedDate = dateFormatter.format(appointmentDate);
+
+        // Обновляем сообщение с информацией о дате записи
+        String message = client.getName() + ", вы успешно записались на прием к " + doctor.getName() + ".\n" +
+                "Дата и время приема: " + formattedDate + "\n" +
+                "Специальность: " + doctor.getSpecialization() + "\n" +
+                "Расписание: " + doctor.getSchedule();
         emailService.sendSimpleMessage(email, subject, message);
 
         return "Запись на прием успешно создана. Письмо отправлено на " + email;
