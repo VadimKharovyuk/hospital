@@ -1,16 +1,13 @@
 package com.example.hospital.controller;
-
 import com.example.hospital.Service.EmailService;
 import com.example.hospital.model.Client;
 import com.example.hospital.model.Doctor;
 import com.example.hospital.repository.ClientRepository;
 import com.example.hospital.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
