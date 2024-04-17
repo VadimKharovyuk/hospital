@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients</title>
+    <!-- Подключение внешних CSS стилей -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Шапка страницы -->
+<header>
+    <h1>Список клиентов</h1>
+</header>
+<!-- Основное содержимое страницы -->
+<main>
+    <div class="container">
+        <!-- Список клиентов -->
+        <div class="clients-list">
+            <h2>Список клиентов</h2>
+            <ul>
+                <!-- Пример использования Thymeleaf для отображения данных из модели -->
+                <!-- Для каждого клиента из списка переданного из контроллера -->
+                <li th:each="client : ${clients}">
+                    <!-- Отображаем информацию о клиенте -->
+                    <span th:text="${client.name}"></span>
+                    <span th:text="${client.appointmentDate}"></span>
+                    <span th:text="${client.email}"></span>
+                    <span th:text="${client.phone}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<!-- Подвал страницы -->
+<footer>
+    <p>&copy; 2024 Ваша клиника</p>
+</footer>
+
+</body>
+</html>

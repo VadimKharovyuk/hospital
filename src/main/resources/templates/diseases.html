@@ -1,0 +1,24 @@
+<!-- Форма для добавления нового заболевания -->
+<div class="form-container">
+    <h2>Добавить новое заболевание</h2>
+    <form action="/addDisease" method="post">
+        <div class="form-group">
+            <label for="clientName">Имя клиента:</label>
+            <select id="clientName" name="clientName" required>
+                <option value="">Выберите клиента</option>
+                <!-- Здесь будут отображаться имена клиентов из базы данных -->
+                <!-- Пример использования Thymeleaf для отображения данных из модели -->
+                <option th:each="client : ${clients}" th:value="${client.name}" th:text="${client.name}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="diseaseName">Название заболевания:</label>
+            <input type="text" id="diseaseName" name="diseaseName" required>
+        </div>
+        <div class="form-group">
+            <label for="diseaseDescription">Описание заболевания:</label>
+            <textarea id="diseaseDescription" name="diseaseDescription" required></textarea>
+        </div>
+        <button type="submit">Добавить</button>
+    </form>
+</div>

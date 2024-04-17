@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Patients</title>
+    <style>
+
+        nav {
+            text-align: center;
+            background-color: #333; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+
+            display: inline; /* Располагаем элементы горизонтально */
+        }
+
+        nav ul li a {
+            color: #fff; /* Цвет текста */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+            display: inline-block; /* Отображаем как блочные элементы */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Изменение цвета при наведении курсора */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/appointments">Список записей</a></li>
+        <li><a href="/doctors">Наши врачи</a></li>
+        <li><a href="/login">Записаться</a></li>
+        <li><a href="/register">Mail</a></li>
+        <li><a href="/patients">Patients</a></li>
+    </ul>
+</nav>
+<h1>List of Patients</h1>
+<table border="1">
+    <thead>
+    <tr>
+
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Appointment Date</th>
+        <th>Doctor</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Используем Thymeleaf для итерации по списку клиентов -->
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.email}"></td>
+        <td th:text="${client.phone}"></td>
+        <td th:text="${client.appointmentDate}"></td>
+        <td th:text="${client.doctor.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
