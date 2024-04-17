@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Patient</title>
     <style>
+
+        nav {
+            text-align: center;
+            background-color: #333; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+
+            display: inline; /* Располагаем элементы горизонтально */
+        }
+
+        nav ul li a {
+            color: #fff; /* Цвет текста */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+            display: inline-block; /* Отображаем как блочные элементы */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Изменение цвета при наведении курсора */
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -58,6 +86,15 @@
     </style>
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/appointments">Список записей</a></li>
+        <li><a href="/doctors">Наши врачи</a></li>
+        <li><a href="/patient">Запись пацыентов</a></li>
+        <li><a href="/register">Mail</a></li>
+    </ul>
+</nav>
 <h2>Add New Patient</h2>
 <form action="/addpatients" method="post">
     <label for="name">Name:</label><br>

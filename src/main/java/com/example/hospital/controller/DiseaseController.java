@@ -1,6 +1,5 @@
 package com.example.hospital.controller;
 
-import com.example.hospital.model.Client;
 import com.example.hospital.model.Disease;
 import com.example.hospital.model.Patient;
 import com.example.hospital.repository.DiseaseRepository;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -23,10 +21,10 @@ public class DiseaseController {
     private final DiseaseRepository diseaseRepository;
     private final PatientRepository patientRepository;
 
-    @GetMapping("/addDisease")
+    @GetMapping("/disease")
     public String showAddDiseaseForm(Model model) {
         // Получение списка всех пациентов из базы данных
-        List<Patient> patients = patientRepository.findAll();
+        Iterable<Patient> patients = patientRepository.findAll();
 
         // Передача списка пациентов в модель для отображения на странице
         model.addAttribute("patients", patients);
@@ -37,32 +35,46 @@ public class DiseaseController {
         return "diseases"; // Возвращает имя представления add_disease.html
     }
 
+
+
+
     @PostMapping("/addDisease")
     public String addDisease(
             @RequestParam Long patientId,
-            @ModelAttribute("disease") Disease disease) {
-        // Получаем пациента из базы данных по его идентификатору
-        Optional<Patient> optionalPatient = patientRepository.findById(patientId);
-        if (optionalPatient.isPresent()) {
-            Patient patient = optionalPatient.get();
-            // Устанавливаем найденного пациента в заболевании
-            disease.setPatient(patient);
+            @ModelAttribute("disease") Disease disease,
+            @RequestParam String name,
+            @RequestParam Patient diseaseDescription,
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
 
-            // Сохраняем заболевание в базе данных
-            diseaseRepository.save(disease);
+        // Получение пациента из базы данных по его идентификатору
+        Patient patient = patientRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
 
-            // Перенаправляем пользователя на страницу со списком пациентов
-            return "redirect:/patients";
-        } else {
-            // В случае, если пациент не найден, можно выполнить соответствующие действия, например, вывести сообщение об ошибке
-            return "error";
-        }
+        // Установка параметров болезни
+        disease.setName(name);
+        disease.setPatient(diseaseDescription);
+        disease.setStartDate(startDate);
+        disease.setEndDate(endDate);
+
+        // Привязываем болезнь к пациенту
+        disease.setPatient(patient);
+
+        // Сохраняем болезнь в базе данных
+        diseaseRepository.save(disease);
+
+        // Перенаправляем пользователя на страницу со списком пациентов
+        return "redirect:/patients";
     }
 
 
 
-
 }
+
+
+
+
+
 
 
 
