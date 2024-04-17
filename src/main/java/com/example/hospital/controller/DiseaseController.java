@@ -48,8 +48,8 @@ public class DiseaseController {
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
         // Преобразование строковых значений startDate и endDate в LocalDate
-        LocalDate parsedStartDate = LocalDate.parse(startDate);
-        LocalDate parsedEndDate = LocalDate.parse(endDate);
+        LocalDate parsedStartDate = !startDate.isEmpty() ? LocalDate.parse(startDate) : null;
+        LocalDate parsedEndDate = !endDate.isEmpty() ? LocalDate.parse(endDate) : null;
 
         // Установка параметров болезни
         disease.setName(name);
@@ -65,6 +65,7 @@ public class DiseaseController {
         // Перенаправляем пользователя на страницу со списком болезней
         return "redirect:/diseaseslist";
     }
+
 
 
     @GetMapping("/diseaseslist")
