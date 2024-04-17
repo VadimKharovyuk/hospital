@@ -13,31 +13,31 @@
         }
 
         nav {
-            background-color: #333; /* Цвет фона */
-            padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+            background-color: #333;
+            padding: 10px 0;
         }
 
         nav ul {
-            list-style-type: none; /* Убираем маркеры списка */
+            list-style-type: none;
             padding: 0;
             margin: 0;
             text-align: center;
         }
 
         nav ul li {
-            display: inline; /* Располагаем элементы горизонтально */
+            display: inline;
             margin: 0 10px;
         }
 
         nav ul li a {
-            color: #fff; /* Цвет текста */
-            text-decoration: none; /* Убираем подчеркивание ссылок */
-            padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
-            display: inline-block; /* Отображаем как блочные элементы */
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: inline-block;
         }
 
         nav ul li a:hover {
-            background-color: #555; /* Изменение цвета при наведении курсора */
+            background-color: #555;
         }
 
         h1 {
@@ -106,8 +106,8 @@
     <label for="phone">Phone:</label><br>
     <input type="tel" id="phone" name="phone" required><br>
 
-    <label for="date">Date:</label><br>
-    <input type="date" id="date" name="date" required><br>
+    <label for="date">Выберите дату и время:</label>
+    <input type="datetime-local" id="date" name="date" required>
 
     <label for="doctor">Doctor:</label><br>
     <select id="doctorId" name="doctorId" required>
@@ -119,6 +119,7 @@
     </select><br>
 
     <input type="submit" value="Submit">
+
 </form>
 </body>
 </html>

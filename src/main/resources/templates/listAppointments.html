@@ -91,6 +91,9 @@
     </tr>
     </thead>
     <tbody>
+
+
+
     <!-- Используйте Thymeleaf для итерации по списку записей на прием и вывода данных в таблицу -->
     <tr th:each="appointment : ${appointments}">
         <td th:text="${appointment.name}"></td>
@@ -108,6 +111,7 @@
     </tr>
     </tbody>
 </table>
+
 
 </body>
 </html>
