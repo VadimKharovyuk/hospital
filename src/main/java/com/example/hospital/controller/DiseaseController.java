@@ -57,7 +57,7 @@ public class DiseaseController {
         diseaseRepository.save(disease);
 
         // Перенаправляем пользователя на страницу со списком пациентов
-        return "home";
+        return "redirect:/diseaseslist";
     }
 
 
