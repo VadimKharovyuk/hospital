@@ -21,6 +21,6 @@ public class Disease {
     private String endDate;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 }

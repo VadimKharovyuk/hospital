@@ -19,7 +19,7 @@ public class Procedure {
     private String date;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
 
 }
