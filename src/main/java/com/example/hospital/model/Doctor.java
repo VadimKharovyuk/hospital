@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.Set;
 
 
@@ -20,8 +21,6 @@ public class Doctor {
     private String name;
     private String specialization;
     private String schedule;
-//    private Calendar calendar;
-
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
