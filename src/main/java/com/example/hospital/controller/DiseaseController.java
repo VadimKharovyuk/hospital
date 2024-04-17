@@ -35,8 +35,6 @@ public class DiseaseController {
     }
 
 
-
-
     @PostMapping("/addDisease")
     public String addDisease(
             @RequestParam Long patientId,
@@ -69,7 +67,6 @@ public class DiseaseController {
     }
 
 
-
     @GetMapping("/diseaseslist")
     public String getAllDiseases(Model model) {
         model.addAttribute("diseases", diseaseRepository.findAll());
@@ -77,8 +74,8 @@ public class DiseaseController {
     }
 
     @RequestMapping("/deletedisease/{id}")
-    public String deleteBiId(@PathVariable Long id){
-       diseaseRepository.deleteById(id);
+    public String deleteBiId(@PathVariable Long id) {
+        diseaseRepository.deleteById(id);
         return "redirect:/diseaseslist";
     }
 
@@ -95,7 +92,6 @@ public class DiseaseController {
 
         return "statistics"; // Имя вашего шаблона для отображения статистики
     }
-
 
 
 }

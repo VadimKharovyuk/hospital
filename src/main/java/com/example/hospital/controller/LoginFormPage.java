@@ -27,8 +27,9 @@ public class LoginFormPage {
         model.addAttribute("doctors", doctors);
         return "login"; // Возвращаем имя представления (шаблона HTML)
     }
+
     @GetMapping("/register")
-    public String registerPage(Model model){
+    public String registerPage(Model model) {
         List<Doctor> doctors = doctorRepository.findAll(); // Предположим, что doctorRepository - это ваш репозиторий для работы с сущностью Doctor
         model.addAttribute("doctors", doctors);
         return "registerMail";
@@ -76,7 +77,6 @@ public class LoginFormPage {
     }
 
 
-
     @GetMapping("/appointments")
     public String getAppointments(Model model) {
         // Получение списка записей на прием из базы данных
@@ -88,9 +88,10 @@ public class LoginFormPage {
 
 
     @RequestMapping("/delete/{id}")
-    public String deleteBiId(@PathVariable Long id){
+    public String deleteBiId(@PathVariable Long id) {
         clientRepository.deleteById(id);
-    return "redirect:/appointments";
+        return "redirect:/appointments";
     }
 
 }
+
