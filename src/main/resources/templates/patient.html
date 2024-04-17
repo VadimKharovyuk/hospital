@@ -95,7 +95,7 @@
         <li><a href="/register">Mail</a></li>
     </ul>
 </nav>
-<h2>Add New Patient</h2>
+<h2 style="text-align: center">Добавить нового пацыента</h2>
 <form action="/addpatients" method="post">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" required><br>
@@ -112,7 +112,9 @@
     <label for="contact">Contact phone:</label><br>
     <input type="text" id="contact" name="contact" required><br>
 
-    <button type="submit">Add Patient</button>
+    <button type="submit">Зарегстрироваться</button>
+    <a href="/disease" style="text-decoration: none; color: #4CAF50; margin-top: 10px; display: inline-block;">Если вы уже зарегистрированы</a>
+
 </form>
 </body>
 </html>

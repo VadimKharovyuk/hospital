@@ -20,6 +20,7 @@ public class Disease {
     private String startDate;
     private String endDate;
 
+
     @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;

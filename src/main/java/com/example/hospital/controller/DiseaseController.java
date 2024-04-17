@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
 @Controller
 @AllArgsConstructor
 public class DiseaseController {
@@ -32,7 +30,7 @@ public class DiseaseController {
         // Передача пустого объекта Disease для заполнения формы
         model.addAttribute("disease", new Disease());
 
-        return "diseases"; // Возвращает имя представления add_disease.html
+        return "diseasesPage"; // Возвращает имя представления add_disease.html
     }
 
 
@@ -43,7 +41,6 @@ public class DiseaseController {
             @RequestParam Long patientId,
             @ModelAttribute("disease") Disease disease,
             @RequestParam String name,
-            @RequestParam Patient diseaseDescription,
             @RequestParam String startDate,
             @RequestParam String endDate) {
 
@@ -53,7 +50,6 @@ public class DiseaseController {
 
         // Установка параметров болезни
         disease.setName(name);
-        disease.setPatient(diseaseDescription);
         disease.setStartDate(startDate);
         disease.setEndDate(endDate);
 
@@ -64,7 +60,7 @@ public class DiseaseController {
         diseaseRepository.save(disease);
 
         // Перенаправляем пользователя на страницу со списком пациентов
-        return "redirect:/patients";
+        return "home";
     }
 
 
