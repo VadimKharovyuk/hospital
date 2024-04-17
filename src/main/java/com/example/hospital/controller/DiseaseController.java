@@ -1,5 +1,6 @@
 package com.example.hospital.controller;
 
+import com.example.hospital.Service.DiseaseService;
 import com.example.hospital.model.Disease;
 import com.example.hospital.model.Patient;
 import com.example.hospital.repository.DiseaseRepository;
@@ -9,12 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 @AllArgsConstructor
 public class DiseaseController {
 
     private final DiseaseRepository diseaseRepository;
     private final PatientRepository patientRepository;
+    private final DiseaseService diseaseService;
 
     @GetMapping("/disease")
     public String showAddDiseaseForm(Model model) {
@@ -45,10 +49,14 @@ public class DiseaseController {
         Patient patient = patientRepository.findById(patientId)
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
+        // Преобразование строковых значений startDate и endDate в LocalDate
+        LocalDate parsedStartDate = LocalDate.parse(startDate);
+        LocalDate parsedEndDate = LocalDate.parse(endDate);
+
         // Установка параметров болезни
         disease.setName(name);
-        disease.setStartDate(startDate);
-        disease.setEndDate(endDate);
+        disease.setStartDate(parsedStartDate);
+        disease.setEndDate(parsedEndDate);
 
         // Привязываем болезнь к пациенту
         disease.setPatient(patient);
@@ -56,9 +64,10 @@ public class DiseaseController {
         // Сохраняем болезнь в базе данных
         diseaseRepository.save(disease);
 
-        // Перенаправляем пользователя на страницу со списком пациентов
+        // Перенаправляем пользователя на страницу со списком болезней
         return "redirect:/diseaseslist";
     }
+
 
 
     @GetMapping("/diseaseslist")
@@ -74,7 +83,18 @@ public class DiseaseController {
     }
 
 
+    @GetMapping("/statistics")
+    public String showStatistics(Model model) {
+        int totalDiseases = diseaseService.getTotalDiseases();
+        int activeDiseases = diseaseService.getActiveDiseases();
+        // Другие расчеты статистики заболеваемости
 
+        model.addAttribute("totalDiseases", totalDiseases);
+        model.addAttribute("activeDiseases", activeDiseases);
+        // Другие атрибуты для передачи результатов расчетов в шаблон
+
+        return "statistics"; // Имя вашего шаблона для отображения статистики
+    }
 
 
 

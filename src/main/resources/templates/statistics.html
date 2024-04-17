@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics</title>
+  <style>
+    nav {
+      text-align: center;
+      background-color: #333; /* Цвет фона */
+      padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+    }
+
+    nav ul {
+      list-style-type: none; /* Убираем маркеры списка */
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+
+      display: inline; /* Располагаем элементы горизонтально */
+    }
+
+    nav ul li a {
+      color: #fff; /* Цвет текста */
+      text-decoration: none; /* Убираем подчеркивание ссылок */
+      padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+      display: inline-block; /* Отображаем как блочные элементы */
+    }
+
+    nav ul li a:hover {
+      background-color: #555; /* Изменение цвета при наведении курсора */
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    span {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/appointments">Записи к доктору</a></li>
+    <li><a href="/doctors">Наши врачи</a></li>
+    <li><a href="/patient">Запись пацыентов</a></li>
+    <li><a href="/register">Mail</a></li>
+    <li><a href="/diseaseslist">Лист Больных</a></li>
+    <li><a href="/statistics">Статистика Больных</a></li>
+  </ul>
+</nav>
+<div class="container">
+  <h2>Statistics</h2>
+  <p>Total Diseases: <span th:text="${totalDiseases}"></span></p>
+  <p>Active Diseases: <span th:text="${activeDiseases}"></span></p>
+  <!-- Другие элементы для отображения дополнительной статистики -->
+</div>
+</body>
+</html>

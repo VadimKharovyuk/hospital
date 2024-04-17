@@ -5,30 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Disease</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            text-align: center;
-            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .main {
+            width: 50%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
@@ -37,70 +34,55 @@
         }
 
         input[type="text"],
-        textarea {
-            width: calc(100% - 10px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
+        input[type="date"],
         select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 5px;
             box-sizing: border-box;
-            margin-top: 5px;
         }
 
-        button {
+        button[type="submit"] {
             background-color: #4CAF50;
             color: white;
             padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            float: right;
         }
 
-        button:hover {
+        button[type="submit"]:hover {
             background-color: #45a049;
         }
-
     </style>
 </head>
 <body>
-<h1 style="text-align: center">Что б сообщить о болезни доктору нужно <br>
-    <a href="/patient">зарегистрироваться</a></h1>
-<section class="container">
-
-<h2>Сообщить о болезни </h2>
-
-<form action="/addDisease" method="post">
-    <div class="form-group">
-        <label for="name">Описание  болезни:</label>
-        <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-        <label for="patient">Patient:</label>
-        <select id="patient" name="patientId" required>
-            <option value="">Выберите пациента</option>
-            <!-- Используем Thymeleaf для отображения списка пациентов -->
-            <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"></option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="startDate">Дата начала:</label>
-        <input type="text" id="startDate" name="startDate" required>
-    </div>
-    <div class="form-group">
-        <label for="endDate">Дата конца:</label>
-        <input type="text" id="endDate" name="endDate" required>
-    </div>
-    <button type="submit">Добавить </button>
-</form>
+<section class="main">
+    <h2>Сообщить о болезни</h2>
+    <form action="/addDisease" method="post">
+        <div class="form-group">
+            <label for="name">Disease Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div class="form-group">
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <div class="form-group">
+            <label for="patient">Patient:</label>
+            <select id="patient" name="patientId" required>
+                <option value="">Select Patient</option>
+                <!-- Отобразите список пациентов в выпадающем списке -->
+                <option th:each="patient : ${patients}" th:value="${patient.id}" th:text="${patient.name}"></option>
+            </select>
+        </div>
+        <button type="submit">Add Disease</button>
+    </form>
 </section>
 </body>
 </html>
