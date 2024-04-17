@@ -89,10 +89,10 @@
 <nav>
     <ul>
         <li><a href="/">Главная</a></li>
-        <li><a href="/appointments">Список</a></li>
+        <li><a href="/appointments">Список записей</a></li>
         <li><a href="/doctors">Наши врачи</a></li>
         <li><a href="/login">Записаться БД </a></li>
-        <li><a href="/register">Mail</a></li>
+        <li><a href="/register">Записаться Mail</a></li>
     </ul>
 </nav>
 <h1>Registration Form Mail</h1>
@@ -111,14 +111,14 @@
 
     <label for="doctor">Doctor:</label><br>
     <select id="doctorId" name="doctorId" required>
-        <option value="">Select Doctor</option>
+        <option value="">Выберите Врача</option>
         <!-- Динамически создаем опции для каждого врача из списка doctors -->
         <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
         <!-- <option value="1">Dr. John Doe</option> -->
         <!-- <option value="2">Dr. Jane Smith</option> -->
     </select><br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Записаться">
 
 </form>
 </body>
