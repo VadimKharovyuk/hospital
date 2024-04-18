@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Doctor</title>
+    <style>
+        nav {
+            text-align: center;
+            background-color: #333; /* Цвет фона */
+            padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+        }
+
+        nav ul {
+            list-style-type: none; /* Убираем маркеры списка */
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+
+            display: inline; /* Располагаем элементы горизонтально */
+        }
+
+        nav ul li a {
+            color: #fff; /* Цвет текста */
+            text-decoration: none; /* Убираем подчеркивание ссылок */
+            padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+            display: inline-block; /* Отображаем как блочные элементы */
+        }
+
+        nav ul li a:hover {
+            background-color: #555; /* Изменение цвета при наведении курсора */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="/appointments">Записи к доктору</a></li>
+        <li><a href="/doctors">Наши врачи</a></li>
+        <li><a href="/patient">Запись пацыентов</a></li>
+        <li><a href="/register">Mail</a></li>
+        <li><a href="/diseaseslist">Лист Больных</a></li>
+        <li><a href="/statistics">Статистика Больных</a></li>
+    </ul>
+</nav>
+<h2 style="text-align: center">Add New Doctor</h2>
+<form action="/doctor/add" method="post">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+        <label for="specialization">Specialization:</label>
+        <input type="text" id="specialization" name="specialization" required>
+    </div>
+    <div>
+        <label for="schedule">Schedule:</label>
+        <input type="text" id="schedule" name="schedule" required>
+    </div>
+    <button type="submit">Add Doctor</button>
+</form>
+</body>
+</html>
