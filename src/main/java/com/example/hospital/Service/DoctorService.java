@@ -5,6 +5,7 @@ import com.example.hospital.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,10 +19,12 @@ public class DoctorService {
         Optional<Doctor> doctorOptional = doctorRepository.findById(id);
         doctorOptional.ifPresent(doctorRepository::delete);
 
+
+
     }
 
 
-
-
-
+    public List<Doctor> getAllDoctors() {
+       return doctorRepository.findAll();
+    }
 }

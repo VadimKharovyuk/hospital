@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctors List</title>
+  <style>
+    nav {
+      text-align: center;
+      background-color: #333; /* Цвет фона */
+      padding: 10px 0; /* Внутренние отступы по вертикали и горизонтали */
+    }
+
+    nav ul {
+      list-style-type: none; /* Убираем маркеры списка */
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+
+      display: inline; /* Располагаем элементы горизонтально */
+    }
+
+    nav ul li a {
+      color: #fff; /* Цвет текста */
+      text-decoration: none; /* Убираем подчеркивание ссылок */
+      padding: 10px 20px; /* Внутренние отступы по вертикали и горизонтали */
+      display: inline-block; /* Отображаем как блочные элементы */
+    }
+
+    nav ul li a:hover {
+      background-color: #555; /* Изменение цвета при наведении курсора */
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      margin-left: auto; /* Центрирование по горизонтали */
+      margin-right: auto; /* Центрирование по горизонтали */
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <ul>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/appointments">Записи к доктору</a></li>
+    <li><a href="/doctors">Наши врачи</a></li>
+    <li><a href="/doctor/doctors">Наши врачи Бд</a></li>
+    <li><a href="/patient">Запись пациентов</a></li>
+    <li><a href="/register">Mail</a></li>
+    <li><a href="/diseaseslist">Лист Больных</a></li>
+    <li><a href="/statistics">Статистика Больных</a></li>
+    <li><a href="/doctor/add">Добавить доктора</a></li>
+  </ul>
+</nav>
+<h2 style="text-align: center">Doctors List</h2>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Specialization</th>
+    <th>Schedule</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterate over the list of doctors retrieved from the controller -->
+  <tr th:each="doctor : ${doctors}">
+    <!-- Access doctor's properties using Thymeleaf expressions -->
+    <td th:text="${doctor.name}"></td>
+    <td th:text="${doctor.specialization}"></td>
+    <td th:text="${doctor.schedule}"></td>
+    <td>
+      <form th:action="@{/doctor/delete/{id}(id=${doctor.id})}" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Удалить">
+      </form>
+
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/doctor")
 @AllArgsConstructor
@@ -25,10 +27,23 @@ public class DoctorController {
         return "redirect:/doctor/add";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteDoctor(@PathVariable Long id) {
         doctorService.deleteDoctorById(id);
         return "redirect:/doctor/add";
+    }
+
+
+    @GetMapping("/doctors")
+    public String getDoctors(Model model) {
+        // Получаем список докторов из сервиса
+        List<Doctor> doctors = doctorService.getAllDoctors();
+
+        // Передаем список докторов в представление
+        model.addAttribute("doctors", doctors);
+
+        // Возвращаем имя представления (HTML-шаблона), в котором будет отображаться список докторов
+        return "doctorListBd";
     }
 
 
