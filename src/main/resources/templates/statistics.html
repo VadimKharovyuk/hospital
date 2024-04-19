@@ -65,18 +65,20 @@
 <nav>
   <ul>
     <li><a href="/">Главная</a></li>
-    <li><a href="/appointments">Записи к доктору</a></li>
-    <li><a href="/doctors">Наши врачи</a></li>
-    <li><a href="/patient">Запись пацыентов</a></li>
+    <li><a href="/appointments">Записи к доктору Mail</a></li>
+    <li><a href="/doctors">Наши врачи </a></li>
+    <li><a href="/doctor/doctors">Наши врачи Бд</a></li>
+    <li><a href="/patient">Регистрация пацыентов</a></li>
     <li><a href="/register">Mail</a></li>
     <li><a href="/diseaseslist">Лист Больных</a></li>
     <li><a href="/statistics">Статистика Больных</a></li>
+    <li><a href="/doctor/add">Добавить доктора</a></li>
   </ul>
 </nav>
 <div class="container">
-  <h2>Statistics</h2>
-  <p>Total Diseases: <span th:text="${totalDiseases}"></span></p>
-  <p>Active Diseases: <span th:text="${activeDiseases}"></span></p>
+  <h2>Статистика :</h2>
+  <p>Всего заболевших: <span th:text="${totalDiseases}"></span></p>
+  <p> Активные заболевания: <span th:text="${activeDiseases}"></span></p>
   <!-- Другие элементы для отображения дополнительной статистики -->
 </div>
 </body>
