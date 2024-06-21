@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 public class RegistrationService {
@@ -18,7 +20,7 @@ public class RegistrationService {
     private final EmailService emailService;
     private final RabbitTemplate rabbitTemplate;
 
-    public String registerClient(String name, String email, String phone, Long doctorId) {
+    public String registerClient(String name, String email, String phone, Long doctorId,LocalDateTime dateTime) {
         Client client = new Client();
         client.setName(name);
         client.setEmail(email);

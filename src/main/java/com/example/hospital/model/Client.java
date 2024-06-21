@@ -1,11 +1,12 @@
 package com.example.hospital.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import jakarta.persistence.*;
 import lombok.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class Client implements Serializable {
     private Long id;
 
     private String name;
-    private Date appointmentDate;
+    private LocalDateTime appointmentDate;
     private String email;
     private String phone;
 

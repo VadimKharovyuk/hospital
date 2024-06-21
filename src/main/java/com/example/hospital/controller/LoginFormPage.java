@@ -1,5 +1,6 @@
 package com.example.hospital.controller;
 
+import com.example.hospital.Service.RegistrationService;
 import com.example.hospital.model.Client;
 import com.example.hospital.model.Doctor;
 import com.example.hospital.repository.ClientRepository;
@@ -12,14 +13,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 @Controller
 @AllArgsConstructor
 public class LoginFormPage {
     private final DoctorRepository doctorRepository;
     private final ClientRepository clientRepository;
+
 
     @GetMapping("/login")
     public String showAppointmentForm(Model model) {
@@ -32,7 +41,7 @@ public class LoginFormPage {
     public String registerPage(Model model) {
         List<Doctor> doctors = doctorRepository.findAll(); // Предположим, что doctorRepository - это ваш репозиторий для работы с сущностью Doctor
         model.addAttribute("doctors", doctors);
-        return "registerMail";
+        return "login";
     }
 
     @PostMapping("/submit_appointment")
@@ -41,40 +50,33 @@ public class LoginFormPage {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam String date,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date,
             RedirectAttributes redirectAttributes) {
 
-        // Получаем выбранного врача из базы данных
+        // Retrieve selected doctor from the database
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid doctor Id: " + doctorId));
 
-        // Создаем нового клиента
+        // Create a new client
         Client client = new Client();
         client.setName(name);
         client.setEmail(email);
         client.setPhone(phone);
-        // Парсим строку с датой и временем и устанавливаем в объект Date
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        try {
-            Date appointmentDate = formatter.parse(date);
-            client.setAppointmentDate(appointmentDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return "Ошибка при обработке даты и времени";
-        }
+        client.setAppointmentDate(date); // Set appointment date
 
-        // Привязываем клиента к выбранному врачу
+        // Bind client to selected doctor
         client.setDoctor(doctor);
 
-        // Сохраняем клиента в базе данных
+        // Save client to the database
         clientRepository.save(client);
 
-        // Добавляем сообщение об успешном создании записи
-        redirectAttributes.addFlashAttribute("message", "Запись на прием успешно создана!");
+        // Add success message
+        redirectAttributes.addFlashAttribute("message", "Appointment successfully created!");
 
-        // Выполняем редирект на страницу с записями на прием
-        return "redirect:/login";
+        // Redirect to appointment list page or another appropriate page
+        return "redirect:/appointments";
     }
+
 
 
     @GetMapping("/appointments")
@@ -94,4 +96,3 @@ public class LoginFormPage {
     }
 
 }
-

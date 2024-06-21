@@ -100,7 +100,7 @@
     </ul>
 </nav>
 <h1>Запись на прием </h1>
-<form action="/register" method="POST">
+<form action="/submit_appointment" method="POST">
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" required><br>
 
@@ -111,19 +111,21 @@
     <input type="tel" id="phone" name="phone" required><br>
 
     <label for="date">Выберите дату и время:</label>
-    <input type="datetime-local" id="date" name="date" required>
+    <input type="datetime-local" id="date" name="date" required><br>
 
-    <label for="doctor">Doctor:</label><br>
+    <label for="doctorId">Doctor:</label><br>
     <select id="doctorId" name="doctorId" required>
-        <option value="">Выберите Врача</option>
-        <!-- Динамически создаем опции для каждого врача из списка doctors -->
-        <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option>
+        <option value="">Choose Doctor</option>
+        <!-- Dynamically populate options for each doctor from the controller -->
+        <!-- Example of Thymeleaf syntax: -->
+        <!-- <option th:each="doctor : ${doctors}" th:value="${doctor.id}" th:text="${doctor.name}"></option> -->
+        <!-- Example without Thymeleaf: -->
         <!-- <option value="1">Dr. John Doe</option> -->
         <!-- <option value="2">Dr. Jane Smith</option> -->
     </select><br>
 
-    <input type="submit" value="Записаться">
-
+    <input type="submit" value="Submit">
 </form>
+
 </body>
 </html>
