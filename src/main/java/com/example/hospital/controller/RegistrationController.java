@@ -1,4 +1,5 @@
 package com.example.hospital.controller;
+
 import com.example.hospital.Service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,9 +17,8 @@ public class RegistrationController {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam String date,
             @RequestParam Long doctorId) {
 
-        return registrationService.registerClient(name, email, phone, date, doctorId);
+        return registrationService.registerClient(name, email, phone, doctorId);
     }
 }
