@@ -52,11 +52,11 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public SimpleMessageListenerContainer fanoutContainer(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
+    public SimpleMessageListenerContainer fanoutContainer(ConnectionFactory connectionFactory, MessageListenerAdapter fanoutListenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
         container.setConnectionFactory(connectionFactory);
         container.setQueueNames(FANOUT_QUEUE_NAME);
-        container.setMessageListener(listenerAdapter);
+        container.setMessageListener(fanoutListenerAdapter);
         return container;
     }
 }

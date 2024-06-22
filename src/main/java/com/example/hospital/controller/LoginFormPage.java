@@ -30,7 +30,6 @@ public class LoginFormPage {
     private final DoctorRepository doctorRepository;
     private final ClientRepository clientRepository;
     private final  RegistrationService registrationService;
-    private final RabbitTemplate rabbitTemplate;
 
 
     @GetMapping("/login")
@@ -47,8 +46,7 @@ public class LoginFormPage {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date,
-            @ModelAttribute Client client
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date
           ) {
 
         registrationService.registerClient(name,email,phone,doctorId,date);
