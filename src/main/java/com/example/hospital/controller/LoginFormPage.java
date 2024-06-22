@@ -6,6 +6,7 @@ import com.example.hospital.model.Doctor;
 import com.example.hospital.repository.ClientRepository;
 import com.example.hospital.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class LoginFormPage {
     private final DoctorRepository doctorRepository;
     private final ClientRepository clientRepository;
     private final  RegistrationService registrationService;
+    private final RabbitTemplate rabbitTemplate;
 
 
     @GetMapping("/login")
@@ -45,8 +47,10 @@ public class LoginFormPage {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date,
+            @ModelAttribute Client client
           ) {
+
         registrationService.registerClient(name,email,phone,doctorId,date);
         return "redirect:/appointments";
     }
