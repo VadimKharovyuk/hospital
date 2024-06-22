@@ -7,7 +7,9 @@ import com.example.hospital.repository.ClientRepository;
 import com.example.hospital.repository.DoctorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 
@@ -20,11 +22,12 @@ public class RegistrationService {
     private final EmailService emailService;
     private final RabbitTemplate rabbitTemplate;
 
-    public String registerClient(String name, String email, String phone, Long doctorId,LocalDateTime dateTime) {
+    public String registerClient(String name, String email, String phone, Long doctorId, LocalDateTime date) {
         Client client = new Client();
         client.setName(name);
         client.setEmail(email);
         client.setPhone(phone);
+        client.setAppointmentDate(date);
 
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid doctor Id: " + doctorId));

@@ -28,6 +28,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class LoginFormPage {
     private final DoctorRepository doctorRepository;
     private final ClientRepository clientRepository;
+    private final  RegistrationService registrationService;
 
 
     @GetMapping("/login")
@@ -37,12 +38,6 @@ public class LoginFormPage {
         return "login"; // Возвращаем имя представления (шаблона HTML)
     }
 
-    @GetMapping("/register")
-    public String registerPage(Model model) {
-        List<Doctor> doctors = doctorRepository.findAll(); // Предположим, что doctorRepository - это ваш репозиторий для работы с сущностью Doctor
-        model.addAttribute("doctors", doctors);
-        return "login";
-    }
 
     @PostMapping("/submit_appointment")
     public String submitAppointment(
@@ -50,30 +45,9 @@ public class LoginFormPage {
             @RequestParam String name,
             @RequestParam String email,
             @RequestParam String phone,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date,
-            RedirectAttributes redirectAttributes) {
-
-        // Retrieve selected doctor from the database
-        Doctor doctor = doctorRepository.findById(doctorId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid doctor Id: " + doctorId));
-
-        // Create a new client
-        Client client = new Client();
-        client.setName(name);
-        client.setEmail(email);
-        client.setPhone(phone);
-        client.setAppointmentDate(date); // Set appointment date
-
-        // Bind client to selected doctor
-        client.setDoctor(doctor);
-
-        // Save client to the database
-        clientRepository.save(client);
-
-        // Add success message
-        redirectAttributes.addFlashAttribute("message", "Appointment successfully created!");
-
-        // Redirect to appointment list page or another appropriate page
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm") LocalDateTime date
+          ) {
+        registrationService.registerClient(name,email,phone,doctorId,date);
         return "redirect:/appointments";
     }
 
